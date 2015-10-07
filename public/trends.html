@@ -1,0 +1,5 @@
+<section>
+  <article ng-repeat="tweet in data.data track by $index">
+    <strong>{{tweet.name}} :</strong> {{tweet.text}} <a ng-href="{{tweet.url}}">Search</a>
+  </article>
+</section>

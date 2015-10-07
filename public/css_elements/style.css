@@ -1,0 +1,61 @@
+body
+{
+  	padding: 50px;
+  	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  	background-color: #4FBFFF;
+}
+
+a
+{
+  	color: #00B7FF;
+}
+
+.nav
+{
+	background-color: #444;
+  	text-align: center;
+}
+
+.container
+{
+	float:right;
+	margin-top:2%;
+}
+
+.photo
+{
+	margin:2%;
+}
+
+.textBold
+{
+	font-weight: bold;
+}
+
+.textGrey
+{
+	color: #A0A0A0;
+	font-weight: normal;
+}
+
+.divisor
+{
+	border-bottom:2px;
+	border-bottom-style: solid; 
+}
+
+.tweet
+{
+	margin-left:2%;
+}
+
+@media screen and (min-width: 600px){
+nav.nav-top-fixed li
+	{
+    	width: 120px;
+    	border-bottom: none;
+    	height: 50px;
+    	line-height: 50px;
+    	font-size: 1.4em;
+  	}
+}

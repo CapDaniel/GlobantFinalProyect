@@ -1,0 +1,6 @@
+<section>
+  <article ng-repeat="tweet in data.data" ng-hide="isBlocked(tweet.user)">
+    <strong>{{tweet.user.name}} <em>@{{tweet.user.screen_name}}</em> :</strong>
+    {{tweet.text}} <a href ng-click="Details(tweet)">Details...</a>
+  </article>
+</section>

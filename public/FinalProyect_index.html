@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TwitterClientMain">
+  <head>
+    <meta charset="UTF-8">
+    <title>Twitter Main Page</title>
+    <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/3.0.2/normalize.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  </head>
+  <body>
+    <nav class="nav-top-fixed" style="">
+    <header><h1>Twitter</h1></header>
+    <ul>
+        <li class="home"><a href="#">Home</a></li>
+        <li class="tutorials"><a href="trends.html">Trends</a></li>
+        <li class="about"><a href="blocked.html">Blocked</a></li>
+        <li class="news"><a href="search.html">Search</a></li>
+    </ul>
+    </nav>
+    <div ng-view></div>
+    <link rel="stylesheet" type="text/css" href="css_elements/style.css">
+    <script src="node_modules/angular-route/angular.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="node_modules/ngstorage/ngStorage.min.js"></script>
+    <script src="js_elements/functions.js"></script>
+    <script src="js_elements/rout.js"></script>
+    <!-- Services -->
+    <script src="js_elements/APIService.js"></script>
+    <script src="js_elements/services/user_blocked.js"></script>
+    <script src="js_elements/services/LocationService.js"></script>
+    <!-- Controllers -->
+    <script src="js_elements/search_controller.js"></script>
+    <script src="js_elements/trends_controller.js"></script>
+    <script src="js_elements/timeline_controller.js"></script>
+    <script src="js_elements/blocked_controller.js"></script>
+    <script src="js_elements/controller_details.js"></script>
+  </body>
+</html>

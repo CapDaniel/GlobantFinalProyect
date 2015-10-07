@@ -1,0 +1,14 @@
+<div>
+  <ul>
+  	<li><a href="FinalProyect_index.html">Home</a></li>
+  	<li><a href="blocked.html">Blocked Users</a></li>
+    <li><a href="trends.html">Trends</a></li>
+  </ul>
+</div>
+<img class="photo" ng-src={{tweet.user.profile_image_url}}></img>
+<label class="textBold">{{tweet.user.name}}</label>
+<label class="textGrey">@{{tweet.user.screen_name}}</label>
+<p>{{tweet.text}}</p>
+<label>{{tweet.created_at | date : format : medium }}</label>
+<label>{{tweet.retweet_count}} RETWEETS</label>
+<label>{{tweet.favorite_count}} FAVORITES </label>
