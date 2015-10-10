@@ -1,17 +1,10 @@
-var app=angular.module('BlockedUsersController',['BlockedUserService']);
-app.controller('BlockedUsersController',['$scope','BlockedUserService' ,function($scope,BlockedUserService)
+'use strict';
+angular.module('TwitterClientCtrls').controller('user_blocked', ['$scope', 'BlockedUsersService',
+function($scope, BlockedUsersService)
 {
-    $scope.searchUsersBlocked=function()
+    $scope.users = BlockedUsersService.GetBlockedUsers();
+    $scope.DeleteBlockedUser = function (User)
     {
-        $scope.blockedList=BlockedUserService.blockedList();
-    }
-    $scope.blockUser=function(user)
-    {
-        $scope.blockedList=BlockedUserService.addBlockedUser(user);
-    }
-    $scope.releaseUser=function(index)
-    {
-        $scope.blockedList=BlockedUserService.removeBlockedUser(index);
-    }
-    $scope.searchUsersBlocked();
+        BlockedUsersService.DeleteBlockedUser(User);
+    };
 }]);

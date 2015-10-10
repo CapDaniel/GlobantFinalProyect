@@ -1,71 +1,126 @@
-var app=angular.module('TwitterAPIService',['ngStorage']);
-app.service('TwitterAPI',['$http','$q',function($http,$q)
+'use strict';
+angular.module('TwitterClientServices').service('APIService', ['$http', '$q', 'serverConfig',
+function($http, $q, serverConfig)
 {
-	return
-	{
-		_getTimeline: _getTimeline,
-		_getTrends: _getTrends,
-		_getGeolocation: _getGeolocation,
-		_getTrendsTweets: _getTrendsTweets
-	}
-	function _getTimeline()
-	{
-		var defered=$q.defer();
-		var promise= defered.promise;
-		$http.get('http://localhost:3000/timeline?count=100')
-		.success(function(data)
-		{
-			defered.resolve(data);
-		})
-		.error(function(err)
-		{
-			defered.reject(err)
-		});
-		return promise;
-	}
-	function _getGeolocation(geolocation)
-	{
-		var defered=$q.defer();
-		var promise= defered.promise;
-		$http.get('http://localhost:3000/myplace?'+geolocation)
-		.success(function(data)
-		{
-			defered.resolve(data);
-		})
-		.error(function(err)
-		{
-			defered.reject(err)
-		});
-		return promise;
-	}
-	function _getTrends(id)
-	{
-		var defered=$q.defer();
-		var promise= defered.promise;
-		$http.get('http://localhost:3000/trends?id='+id)
-		.success(function(data)
-		{
-			defered.resolve(data[0].trends);
-		})
-		.error(function(err)
-		{
-			defered.reject(err)
-		});
-		return promise;
-	}
-	function _getTrendsTweets(trend)
-	{
-		var defered=$q.defer();
-		var promise= defered.promise;
-		$http.get('http://localhost:3000/search?q='+trend)
-		.success(function(data)
-		{
-			defered.resolve(data);
-		})
-		.error(function(err)
-		{
-			defered.reject(err)
-		});
-		return promise;
-	}
+  	this.Search = function(query)
+  	{
+	    var items = {};
+	    var deferred = $q.defer();
+	    $http.get( serverConfig.url + 'search?q=' + encodeURIComponent(query)).then(
+	      	function (res)
+	      	{
+	        	if (res.data)
+	        	{
+	          		items.error = false;
+	          		items.data = res.data.statuses;
+	          		deferred.resolve(items);
+	        	}
+	        	else
+	        	{
+	          		items.error = true;
+	          		items.data = 'INVALID_RESPONSE';
+	          		deferred.reject(items);
+	        	}
+	      	},
+	      	function (err)
+	      	{
+		        items.error = true;
+		        items.data = err;
+		        deferred.reject(items);
+	      	});
+	    return deferred.promise;
+  	};
+/*Get tweets from timeline. @param {number} length Amount of tweets to return @returns {Array} An Array Containing tweets from timeline*/
+  	this.GetTimelineTweets = function (length)
+  	{
+	    var items = {};
+	    var deferred = $q.defer();
+
+    	$http.get(serverConfig.url + 'timeline?count=' + String(length)).then(
+	    function (res)
+	    {
+	        if (res.data)
+	        {
+	          	items.error = false;
+	          	items.data = res.data;
+	          	deferred.resolve(items);
+	        }
+	        else
+	        {
+	          	items.error = true;
+	          	items.data = 'INVALID_RESPONSE';
+	          	deferred.reject(items);
+	        }
+	    },
+	    function (err)
+	    {
+	        items.error = true;
+	        items.data = err;
+	        deferred.reject(items);
+	    });
+	    return deferred.promise;
+  	};
+/*Get a Top #10 nearest trends @param {string} woeid User localization with WOEID (Where On Earth IDentifier) @returns {Array} An array containing top #10 nearest trends.*/
+  	this.GetTrends = function (woeid)
+  	{
+	    var items = {};
+	    var deferred = $q.defer();
+    	$http.get( serverConfig.url + 'trends?id=' + String(woeid)).then(
+	      	function (res)
+	      	{
+		        items.error = false;
+		        if (res.data[0])
+		        {
+			        items.error = false;
+			        items.data = res.data[0].trends;
+		          	// Parse Urls (for redirecting to localhost and not twitter.com)
+		          	items.data.forEach(function (index)
+		          	{
+		            	index.url = index.url.replace('http://twitter.com/search?q=', serverConfig.url + '#/search/');
+		          	});
+		          	deferred.resolve(items);
+		        }
+		        else
+		        {
+		          	items.error = true;
+		          	items.data = 'INVALID_RESPONSE';
+		          	deferred.reject(items);
+		        }
+      		},
+	      	function (err)
+	      	{
+	        	items.error = true;
+	        	items.data = err;
+	        	deferred.reject(items);
+	      	});
+    	return deferred.promise;
+  	};
+  	this.GetTweet = function(id)
+  	{
+	    var item = {};
+	    var deferred = $q.defer();
+	    $http.get(serverConfig.url + 'tweet?id=' + String(id)).then(
+	      	function (res)
+	      	{
+	        	if (res)
+	        	{
+	          		item.error = false;
+	         	 	item.data = res;
+	          		deferred.resolve(item);
+	        	}
+	        	else
+	        	{
+	          		item.error = true;
+	          		item.data = 'INVALID_RESPONSE';
+	          		deferred.reject(item);
+	        	}
+	      	},
+	      	function (err)
+	      	{
+	        	item.error = true;
+	        	item.data = err;
+	        	deferred.reject(item);
+	    	});
+	    return deferred.promise;
+	};
 }]);

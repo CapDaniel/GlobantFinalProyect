@@ -1,61 +1,143 @@
 body
 {
-  	padding: 50px;
-  	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  	background-color: #4FBFFF;
+	width: 100%;
+	height: 90%;
+	font-family: Helvetica;
 }
 
-a
+/*TWEET_Content*/
+.item
 {
-  	color: #00B7FF;
+  	margin: 1% 2%;
+  	padding: 3px;
 }
 
-.nav
+.item > header
 {
-	background-color: #444;
+  	overflow: auto;
+}
+
+.item > header > img
+{
+  	float: left;
+  	border-radius: 7px;
+}
+
+.item > header > h1
+{
+  	font-size: 1em;
+  	margin: 0 50px;
+}
+
+.item > header > h1 > small
+{
+  	margin: 0 5px;
+  	font-weight: lighter;
+  	font-style: italic;
+}
+
+.footer-links
+{
+  	text-align:right;
+  	display: inline;
+}
+
+.footer-links > a
+{
+  	margin: 0 2px;
+  	color: #FFF;
+  	font-size: 0.8em;
+  	font-style: italic;
+  	text-decoration: none;
+}
+
+.tweet-content
+{
+  	font-size: 0.8em;
+}
+
+nav.nav-top-fixed
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #3D93D0;
+}
+
+/* NAV_Content */
+nav.nav-top-fixed > header > h1
+{
+  	color: #FFFFFF;
+  	font-size: 1.6em;
+  	margin: 4px 0 22px 10px ;
+}
+
+nav.nav-top-fixed > .nav-inner
+{
+  	background-color: #161616;
+  	color: #FFFFFF;
+  	width: 100%;
+  	margin-top: -23px;
+  	height: 45px;
   	text-align: center;
+  	display: block;
 }
 
-.container
+.icon
 {
-	float:right;
-	margin-top:2%;
+    display: inline-block;
+    margin-top: 4px;
+    width: 20%;
+    border-radius: 4px;
 }
 
-.photo
+.icon.active
 {
-	margin:2%;
+  	background-color: #333336;
 }
 
-.textBold
+.icon:hover
 {
-	font-weight: bold;
+  	background-color: #005F5F;
+  	transition: .5s background-color;
 }
 
-.textGrey
+.icon > *
 {
-	color: #A0A0A0;
-	font-weight: normal;
+  	display: block;
+  	color: #FFFFFF;
+  	text-decoration: none;
 }
 
-.divisor
+.content
 {
-	border-bottom:2px;
-	border-bottom-style: solid; 
+  	margin-top: 80px;
 }
 
-.tweet
+/*SearchStyle*/
+.search-header
 {
-	margin-left:2%;
+    text-align: center;
 }
 
-@media screen and (min-width: 600px){
-nav.nav-top-fixed li
-	{
-    	width: 120px;
-    	border-bottom: none;
-    	height: 50px;
-    	line-height: 50px;
-    	font-size: 1.4em;
+.search-header > *
+{
+    margin-top : 10px;
+}
+
+/* AutoSize in Desktop */
+@media screen and (min-width: 1024px){
+    .content
+    {
+	      background-color: #FFFFFF;
+	      width: 40%;
+	      margin-left: auto;
+	      margin-right: auto;
+  	}
+  	body
+  	{
+    	background-image: url('../libs/background.jpg');
   	}
 }

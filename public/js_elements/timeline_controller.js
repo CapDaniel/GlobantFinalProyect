@@ -1,17 +1,18 @@
 'use strict';
-angular.module('TwitterClientCtrls').controller('TimelineCtrl', ['$scope', 'APIService', 'BlockedUsersService',
+angular.module('TwitterClientCtrls').controller('timeline_controller', ['$scope', 'APIService', 'BlockedUsersService',
 function($scope, APIService, BlockedUsersService)
 {
     $scope.isBlocked = function (User)
     {
-        return BlockedUsersService.isBlocked(User);
+      return BlockedUsersService.isBlocked(User);
     };
     $scope.BlockUser = function (User)
     {
-        BlockedUsersService.AddBlockedUser(User);
+      BlockedUsersService.AddBlockedUser(User);
     };
-    APIService.GetTimelineTweets(45).then(function(data)
-    {
-        $scope.data = data;
-    });
+    APIService.GetTimelineTweets(45).then(
+        function(data)
+        {
+            $scope.data = data;
+        });
 }]);

@@ -1,11 +1,20 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Search Page</title>
+    <link rel="stylesheet" type="text/css" href="css_elements/normalize.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css_elements/style.css">
+</head>
 <section>
-  <header>
-    <input type="text" ng-model="query" placeholder="Search Here...">
-    <input type="button" ng-click="Search()" value="Go">
-  </header><br>
-  <section>
-    <article ng-repeat="tweet in data.data">
-      <strong>{{tweet.user.name}} :</strong> {{tweet.text}} <a href ng-click="Details(tweet)">Details...</a>
-    </article>
-  </section>
+  	<header>
+	    <input type="text" ng-model="query" placeholder="Search Here...">
+	    <input type="button" ng-click="Search()" value="Go">
+  	</header>
+  	</br>
+  	<section>
+	    <article ng-repeat="tweet in data.data">
+	      	<strong>{{tweet.user.name}} :</strong> {{tweet.text}} <a href ng-click="Details(tweet)">Details...</a>
+	    </article>
+  	</section>
 </section>

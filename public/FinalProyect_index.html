@@ -1,37 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="TwitterClientMain">
-  <head>
-    <meta charset="UTF-8">
-    <title>Twitter Main Page</title>
-    <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/3.0.2/normalize.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  </head>
-  <body>
-    <nav class="nav-top-fixed" style="">
-    <header><h1>Twitter</h1></header>
-    <ul>
-        <li class="home"><a href="#">Home</a></li>
-        <li class="tutorials"><a href="trends.html">Trends</a></li>
-        <li class="about"><a href="blocked.html">Blocked</a></li>
-        <li class="news"><a href="search.html">Search</a></li>
-    </ul>
-    </nav>
-    <div ng-view></div>
-    <link rel="stylesheet" type="text/css" href="css_elements/style.css">
-    <script src="node_modules/angular-route/angular.min.js"></script>
-    <script src="node_modules/angular-route/angular-route.min.js"></script>
-    <script src="node_modules/ngstorage/ngStorage.min.js"></script>
-    <script src="js_elements/functions.js"></script>
-    <script src="js_elements/rout.js"></script>
-    <!-- Services -->
-    <script src="js_elements/APIService.js"></script>
-    <script src="js_elements/services/user_blocked.js"></script>
-    <script src="js_elements/services/LocationService.js"></script>
-    <!-- Controllers -->
-    <script src="js_elements/search_controller.js"></script>
-    <script src="js_elements/trends_controller.js"></script>
-    <script src="js_elements/timeline_controller.js"></script>
-    <script src="js_elements/blocked_controller.js"></script>
-    <script src="js_elements/controller_details.js"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Twitter Main Page</title>
+        <link rel="stylesheet" type="text/css" href="css_elements/normalize.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    </head>
+    <body>
+        <nav class="nav-top-fixed" ng-controller="navbar_controller">
+            <header><h1><i class="fa fa-twitter-square"></i> Twitter</h1></header>
+            <nav class="nav-inner">
+                <div class="icon" ng-class="{'active' : onHome()}">
+                    <i class="fa fa-home"></i>
+                    <a ng-href="#/">Home</a>
+                </div>
+                <div class="icon" ng-class="{'active' : onBlocked()}">
+                    <i class="fa fa-user-times"></i>
+                    <a ng-href="#/blocked">Blocked</a>
+                </div>
+                <div class="icon" ng-class="{'active' : onTrends()}">
+                    <i class="fa fa-slack"></i>
+                    <a ng-href="#/trends">Trends</a>
+                </div>
+                <div class="icon" ng-class="{'active' : onSearch()}">
+                    <i class="fa fa-search"></i>
+                    <a ng-href="#/search">Search</a>
+                </div>
+            </nav>
+        </nav>
+        <section class="content">
+            <div ng-view></div>
+        </section>
+        <link rel="stylesheet" type="text/css" href="css_elements/style.css">
+        <script src="node_modules/angular-route/angular.min.js"></script>
+        <script src="node_modules/angular-route/angular-route.min.js"></script>
+        <script src="node_modules/ngstorage/ngStorage.min.js"></script>
+        <script src="js_elements/functions.js"></script>
+        <script src="js_elements/rout.js"></script>
+        <!-- Services -->
+        <script src="js_elements/APIService.js"></script>
+        <script src="js_elements/user_blocked.js"></script>
+        <script src="js_elements/get_location.js"></script>
+        <!-- Controllers -->
+        <script src="js_elements/navbar_controller.js"></script>
+        <script src="js_elements/search_controller.js"></script>
+        <script src="js_elements/trends_controller.js"></script>
+        <script src="js_elements/timeline_controller.js"></script>
+        <script src="js_elements/blocked_controller.js"></script>
+        <script src="js_elements/controller_details.js"></script>
+    </body>
 </html>

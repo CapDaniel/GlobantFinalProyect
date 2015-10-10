@@ -1,5 +1,17 @@
-<section>
-  <article ng-repeat="tweet in data.data track by $index">
-    <strong>{{tweet.name}} :</strong> {{tweet.text}} <a ng-href="{{tweet.url}}">Search</a>
-  </article>
-</section>
+<head>
+    <meta charset="UTF-8">
+    <title>Trends Page</title>
+    <link rel="stylesheet" type="text/css" href="css_elements/normalize.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css_elements/style.css">
+</head>
+<div class="container">
+  	<div class="separador_trends" ng-repeat="trend in trendsList">
+	    <div>
+		    <a ng-href="#/trends/trendtweets/{{trend.query}}">{{trend.name}}
+	      		<img class="imgBlock" src="./Img/symbol.png"></img>
+	      	</a>
+	    </div>
+  	</div>
+</div>

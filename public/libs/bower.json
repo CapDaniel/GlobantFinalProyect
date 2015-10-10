@@ -2,7 +2,7 @@
   "name": "Twitter-Client",
   "version": "1.0",
   "description": "A Twitter Client Project for Globant BootCamp WebUI",
-  "main": "index.js",
+  "main": "functions.js",
   "moduleType": [],
   "license": "MIT",
   "homepage": "",

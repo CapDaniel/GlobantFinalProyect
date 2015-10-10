@@ -1,6 +1,16 @@
-<section>
-  <article ng-repeat="user in users">
-    <p>{{user.name}} <em>@{{user}}</em></p>
-    <a href ng-click="DeleteBlockedUser(user)">Delete</a>
-  </article>
-</section>
+<head>
+    <meta charset="UTF-8">
+    <title>Blocked Page</title>
+    <link rel="stylesheet" type="text/css" href="css_elements/normalize.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css_elements/style.css">
+</head>
+<div class="container">
+  	<div ng-repeat="user in blockedList">
+      	<div class="separadorBloqueados">
+	    	<span class="userBlock">@{{user}}</span> 
+	    	<img class="imgBlock" src="./Img/unlock.png" ng-click="releaseUser($index)"></img>
+    	</div>
+  	</div>
+</div>

@@ -5,35 +5,34 @@ angular.module('TwitterClientMain').config(['$routeProvider', function ($routePr
     // Nearest Trends Route
     .when('/trends',
     {
-      templateUrl : 'views/trends.html', controller  : 'TrendsCtrl'
+      templateUrl : 'trends.html', controller  : 'trends_controller'
     })
     // Search Routes
     .when('/search/:query/:id',
     {
-      templateUrl : 'views/details.html', controller  : 'DetailsCtrl'
+      templateUrl : 'details.html', controller  : 'controller_details'
     })
     .when('/search/:query',
     {
-      templateUrl : 'views/search.html',
-      controller  : 'SearchCtrl'
+      templateUrl : 'search.html', controller  : 'search_controller'
     })
     .when('/search/',
     {
-      templateUrl : 'views/search.html', controller  : 'SearchCtrl'
+      templateUrl : 'search.html', controller  : 'search_controller'
     })
     // Blocked List Route
     .when('/blocked',
     {
-      templateUrl : 'views/blocked.html', controller  : 'BlockedUsersCtrl'
+      templateUrl : 'blocked.html', controller  : 'user_blocked'
     })
     // Root Routes (Timeline by default)
     .when('/:id',
     {
-      templateUrl : 'views/details.html', controller  : 'DetailsCtrl'
+      templateUrl : 'details.html', controller  : 'controller_details'
     })
     .when('/',
     {
-      templateUrl : 'views/timeline.html', controller  : 'TimelineCtrl'
+      templateUrl : 'timeline.html', controller  : 'timeline_controller'
     })
     // By default, redirect to Root Route
     .otherwise(
@@ -42,10 +41,7 @@ angular.module('TwitterClientMain').config(['$routeProvider', function ($routePr
     });
 }])
 // Template Cache & Setting LocalStorage:
-  .run(['$templateCache', '$http', '$localStorage', function ($templateCache, $http, $localStorage)
-  {
-    // Setting LocalStorage:
+.run(['$templateCache', '$http', '$localStorage', function ($templateCache, $http, $localStorage)
+{
     $localStorage.$default({users: [] });
-    // TODO: MAKE CACHE FOR TEMPLATES (WHEN FINISHED)
-    // $http.get('../views/Settings.html', {cache: $templateCache});
-  }]);
+}]);
